@@ -1,5 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.22"
+
+    id("io.ktor.plugin") version "2.3.9"
 }
 
 group = "ru.kpfu.itis.gr201.ponomarev"
@@ -36,4 +38,8 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(19)
+}
+
+application {
+    mainClass.set("ru.kpfu.itis.gr201.ponomarev.MainKt")
 }
