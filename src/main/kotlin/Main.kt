@@ -7,6 +7,9 @@ import io.ktor.server.auth.*
 import io.ktor.server.engine.*
 import io.ktor.server.html.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.*
+import io.ktor.server.plugins.callloging.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
@@ -53,6 +56,18 @@ suspend fun main() {
                     return@validate null
                 }
                 challenge("/auth")
+            }
+        }
+        install(CallLogging) {
+            filter { call -> call.request.path() !in arrayOf("/styles.css", "/favicon.ico") }
+            format { call ->
+                val origin = call.request.origin.remoteAddress
+                val status = call.response.status()
+                val httpMethod = call.request.httpMethod.value
+                val userAgent = call.request.userAgent()
+                val uri = call.request.uri.replace(Regex("\\?code=.*"), "\\?code=[REDACTED]")
+                val time = call.processingTimeMillis()
+                "from $origin ($userAgent): $httpMethod $uri, got $status in ${time}ms"
             }
         }
 
