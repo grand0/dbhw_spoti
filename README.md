@@ -9,7 +9,7 @@
 ## Стек
 - язык [Kotlin](https://kotlinlang.org)
 - бэкэнд-фреймворк [Ktor](https://ktor.io)
-- SQL-фреймворк [Exposed](https://github.com/JetBrains/Exposed)
+- ORM-фреймворк [Exposed](https://github.com/JetBrains/Exposed)
 - шаблонизатор [Kotlin HTML DSL](https://github.com/kotlin/kotlinx.html)
 - БД [PostgreSQL](https://www.postgresql.org/)
 - [Spotify Web API](https://developer.spotify.com/documentation/web-api)
